@@ -1,0 +1,10 @@
+<% content_for :title, "Edit #{@user.name} | Simple Blog" %>
+
+<section class="max-w-xl space-y-6">
+  <div>
+    <p class="text-sm font-medium uppercase tracking-wide text-emerald-700">Community</p>
+    <h1 class="mt-1 text-3xl font-semibold">Edit user</h1>
+  </div>
+  <%= render "form", user: @user %>
+  <%= link_to "Back to user", user_path(@user), class: "text-sm font-medium text-emerald-700 hover:text-emerald-900" %>
+</section>

@@ -1,0 +1,31 @@
+<% content_for :title, "Users | Simple Blog" %>
+
+<section class="space-y-6">
+  <div class="flex flex-wrap items-end justify-between gap-4 border-b border-zinc-200 pb-5">
+    <div>
+      <p class="text-sm font-medium uppercase tracking-wide text-emerald-700">Community</p>
+      <h1 class="mt-1 text-3xl font-semibold">Users</h1>
+    </div>
+    <%= link_to "Add a user", new_user_path, class: "rounded bg-emerald-700 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-800" %>
+  </div>
+
+  <% if @users.any? %>
+    <ul class="divide-y divide-zinc-200">
+      <% @users.each do |user| %>
+        <li class="flex flex-wrap items-center justify-between gap-4 py-4">
+          <div>
+            <%= link_to user.name, user_path(user), class: "font-semibold text-zinc-900 hover:text-emerald-700" %>
+            <p class="mt-1 text-sm text-zinc-600"><%= user.email %></p>
+          </div>
+          <div class="flex items-center gap-4 text-sm">
+            <%= link_to "View posts", user_path(user), class: "font-medium text-emerald-700 hover:text-emerald-900" %>
+            <%= link_to "Edit", edit_user_path(user), class: "text-zinc-600 hover:text-zinc-900" %>
+            <%= button_to "Delete", user_path(user), method: :delete, class: "text-rose-700 hover:text-rose-900" %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="py-8 text-zinc-600">No users yet. Add a user before creating a post.</p>
+  <% end %>
+</section>

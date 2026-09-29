@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Simple Blog" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Simple Blog">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="min-h-screen bg-zinc-50 text-zinc-900 antialiased">
+    <nav class="border-b border-zinc-200 bg-white">
+      <div class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 px-5 py-4">
+        <%= link_to "Simple Blog", root_path, class: "text-lg font-semibold text-zinc-900 hover:text-emerald-700" %>
+        <div class="flex flex-wrap items-center gap-5 text-sm font-medium">
+          <%= link_to "Posts", posts_path, class: "text-zinc-700 hover:text-emerald-700" %>
+          <%= link_to "Users", users_path, class: "text-zinc-700 hover:text-emerald-700" %>
+          <%= link_to "Write a post", new_post_path, class: "text-emerald-700 hover:text-emerald-900" %>
+        </div>
+      </div>
+    </nav>
+
+    <main class="mx-auto max-w-5xl px-5 py-10">
+      <% if notice.present? %>
+        <p role="status" class="mb-6 border-l-4 border-emerald-600 bg-emerald-50 px-4 py-3 text-sm text-emerald-900"><%= notice %></p>
+      <% end %>
+      <% if alert.present? %>
+        <p role="alert" class="mb-6 border-l-4 border-rose-600 bg-rose-50 px-4 py-3 text-sm text-rose-900"><%= alert %></p>
+      <% end %>
+      <%= yield %>
+    </main>
+  </body>
+</html>

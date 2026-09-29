@@ -1,0 +1,10 @@
+<% content_for :title, "Edit #{@post.title} | Simple Blog" %>
+
+<section class="max-w-2xl space-y-6">
+  <div>
+    <p class="text-sm font-medium uppercase tracking-wide text-emerald-700">The blog</p>
+    <h1 class="mt-1 text-3xl font-semibold">Edit post</h1>
+  </div>
+  <%= render "form", post: @post %>
+  <%= link_to "Back to post", post_path(@post), class: "text-sm font-medium text-emerald-700 hover:text-emerald-900" %>
+</section>

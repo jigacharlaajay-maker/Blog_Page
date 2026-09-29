@@ -1,0 +1,15 @@
+<% content_for :title, "New post | Simple Blog" %>
+
+<section class="max-w-2xl space-y-6">
+  <div>
+    <p class="text-sm font-medium uppercase tracking-wide text-emerald-700">The blog</p>
+    <h1 class="mt-1 text-3xl font-semibold">Write a post</h1>
+  </div>
+  <% if @users.empty? %>
+    <p class="border-l-4 border-amber-500 bg-amber-50 p-4 text-sm text-amber-900">
+      You need a user before you can write a post. <%= link_to "Add a user", new_user_path, class: "font-semibold underline" %>
+    </p>
+  <% end %>
+  <%= render "form", post: @post %>
+  <%= link_to "Back to posts", posts_path, class: "text-sm font-medium text-emerald-700 hover:text-emerald-900" %>
+</section>
